@@ -1,12 +1,12 @@
 package tests;
 
-import org.junit.BeforeClass;
-import views.UserView;
+import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.*;
 import java.io.IOException;
+import static org.hamcrest.Matchers.*;
 
-import tests.TestDataLoader;
 import models.UserModel;
+import views.UserView;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UsersTests extends BaseTests {
@@ -31,7 +31,7 @@ public class UsersTests extends BaseTests {
     @DisplayName("GIVEN user has data to create a new user WHEN user requests new user creation THEN user is created on the system")
     void createNewUser(){
         this.setCurrentResponse(usersView.createUser(testUser));
-        this.getCurrentResponse().statusCode(200);
+        this.validateReturnedUserData(testUser);
     }
 
 
@@ -40,7 +40,26 @@ public class UsersTests extends BaseTests {
     @DisplayName("GIVEN user id WHEN user requests user information THEN system return user information by its id")
     void getAnExistingUserByItsId(){
         this.setCurrentResponse(usersView.getUserByUsername("testUser"));
-        this.getCurrentResponse().statusCode(200);
-        System.out.println("Result:" + this.getCurrentResponse().extract().path("email"));
+        this.validateReturnedUserData(testUser);
+    }
+
+    @Order(3)
+    @Test
+    @DisplayName("GIVEN user has correct username and password WHEN user log in THEN system logs in user successfully")
+    void logInUserWithProperCredentials(){
+        this.setCurrentResponse(usersView.login(testUser));
+        this.getCurrentResponse().assertThat()
+                .statusCode(HttpStatus.SC_OK)
+                .extract().body().asString().equals("Logged in user session:");
+    }
+
+    @Order(4)
+    @Test
+    @DisplayName("GIVEN user has logged in WHEN user logs out THEN system finishes user session")
+    void logoutUser(){
+        this.setCurrentResponse(usersView.logout());
+        this.getCurrentResponse().assertThat()
+                .statusCode(HttpStatus.SC_OK)
+                .extract().body().asString().equals("User logged out");
     }
 }

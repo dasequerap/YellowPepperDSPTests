@@ -35,4 +35,16 @@ public class UserView extends BaseView{
 
         return this.getRequest().body(postParams.toJSONString()).post().then().log().everything();
     }
+
+    public ValidatableResponse login(UserModel userToLogIn){
+        return this.getRequest()
+                .queryParam("username", userToLogIn.getUserName())
+                .queryParam("password", userToLogIn.getPassword())
+                .get("/login").then().log().everything();
+    }
+
+    public ValidatableResponse logout(){
+        return this.getRequest().get("/logout").then().log().everything();
+    }
+
 }
