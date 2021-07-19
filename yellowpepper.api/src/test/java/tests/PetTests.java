@@ -1,10 +1,10 @@
 package tests;
 
-import models.UserModel;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.TestMethodOrder;
+import static org.hamcrest.Matchers.equalTo;
 
 import models.PetModel;
 import views.PetView;
@@ -57,6 +57,7 @@ public class PetTests extends BaseTests {
     @DisplayName("GIVEN user a valid status of a pet WHEN user queries pets by status THEN system returns all pets that has given status")
     void getPetsByValidStatus(){
         this.setCurrentResponse(petView.getPetsByStatus(testPet.getStatus()));
+        this.validateMultipleObjectsInResponse(8);
     }
 
     @Order(5)

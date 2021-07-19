@@ -3,10 +3,10 @@ package tests;
 import io.restassured.response.ValidatableResponse;
 import models.PetModel;
 import org.apache.http.HttpStatus;
+import static org.hamcrest.Matchers.equalTo;
 
 import models.UserModel;
 
-import static org.hamcrest.Matchers.equalTo;
 
 public class BaseTests {
 
@@ -45,6 +45,12 @@ public class BaseTests {
                 .body("tags", equalTo(pet.getTags()))
                 .body("status", equalTo(pet.getStatus()));
 
+    }
+
+    protected void validateMultipleObjectsInResponse(int expectedResultNumber) {
+        this.getCurrentResponse()
+                .statusCode(HttpStatus.SC_OK)
+                .body("data.size()", equalTo(expectedResultNumber));
     }
 
 }
