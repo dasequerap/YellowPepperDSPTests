@@ -4,11 +4,11 @@ import helpers.TestDataLoader;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
 import static org.hamcrest.Matchers.equalTo;
+import java.util.Map;
 
 import models.UserModel;
 import models.PetModel;
 import models.OrderModel;
-import org.junit.jupiter.api.Order;
 
 public class BaseTests {
 
@@ -38,7 +38,7 @@ public class BaseTests {
     }
 
     protected void validateReturnedPetData(PetModel pet){
-        this.getCurrentResponse()
+        this.getCurrentResponse().assertThat()
                 .statusCode(HttpStatus.SC_OK)
                 .body("id", equalTo(pet.getId()))
                 .body("category", equalTo(pet.getCategory()))
@@ -50,7 +50,7 @@ public class BaseTests {
     }
 
     protected void validateReturnedOrderData(OrderModel order){
-        this.getCurrentResponse()
+        this.getCurrentResponse().assertThat()
                 .statusCode(HttpStatus.SC_OK)
                 .body("id", equalTo(order.getId()))
                 .body("petId", equalTo(order.getPetId()))
@@ -58,6 +58,14 @@ public class BaseTests {
                 .body("shipDate", equalTo(order.getShipDate()))
                 .body("status", equalTo(order.getStatus()))
                 .body("complete", equalTo(order.getComplete()));
+    }
+
+    protected void validateInventory(Map<String, Object> inventory){
+        this.getCurrentResponse()
+                .statusCode(HttpStatus.SC_OK)
+                .body("approved", equalTo(Integer.parseInt((String) inventory.get("approved"))))
+                .body("placed", equalTo(Integer.parseInt((String) inventory.get("placed"))))
+                .body("delivered", equalTo(Integer.parseInt((String) inventory.get("delivered"))));
     }
 
     protected void validateMultipleObjectsInResponse(int expectedResultNumber) {

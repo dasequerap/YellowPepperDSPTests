@@ -1,0 +1,5 @@
+id,petid,quantity,shipdate,status,complete
+1,1,100,,"placed",true
+2,1,50,,"approved",true
+3,1,50,,"delivered",true
+4,2,10,"2021-07-19T15:07:48.621+00:00","approved",true

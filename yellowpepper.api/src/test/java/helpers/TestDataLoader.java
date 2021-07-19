@@ -1,13 +1,18 @@
 package helpers;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
 
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
 import models.UserModel;
 import models.PetModel;
 import models.OrderModel;
 
 public class TestDataLoader {
+
+    private final String ordersTestData = "src/resources/orders.csv";
 
     public TestDataLoader(){}
 
@@ -52,12 +57,43 @@ public class TestDataLoader {
 
         testOrder.setId(4);
         testOrder.setPetId(2);
-        testOrder.setQuantity(5);
+        testOrder.setQuantity(10);
         testOrder.setShipDate("2021-07-19T14:02:51.036+00:00");
-        testOrder.setStatus("placed");
+        testOrder.setStatus("approved");
         testOrder.setComplete(true);
 
         return testOrder;
     }
 
+    public  List<List<String>> getOrdersFromTestData() throws CsvValidationException, IOException {
+        return readCSVFile(ordersTestData);
+    }
+
+    public Map<String, Object> getInventory(int orderEntries) throws CsvValidationException, IOException {
+        Map<String, Object> inventory = new HashMap<>();
+        List<List<String>> testDataOrders = this.getOrdersFromTestData();
+        Integer tempCount = 0;
+
+        for(int index = 0; index < orderEntries; index++) {
+            if(inventory.get(testDataOrders.get(index).get(4)) != null){
+                tempCount = Integer.parseInt(testDataOrders.get(index).get(2))
+                        + Integer.parseInt((String) inventory.get(testDataOrders.get(index).get(4)));
+                inventory.remove(testDataOrders.get(index).get(4));
+                inventory.put(testDataOrders.get(index).get(4), tempCount.toString());
+            } else {
+                inventory.put(testDataOrders.get(index).get(4), testDataOrders.get(index).get(2));
+            }
+        }
+        return inventory;
+    }
+
+    private List<List<String>> readCSVFile(String csvFile) throws IOException, CsvValidationException {
+        CSVReader csvTestData = new CSVReader(new FileReader(csvFile));
+        List<List<String>> entries = new ArrayList<List<String>>();
+        String line[] = null;
+        csvTestData.readNext();
+
+        while((line = csvTestData.readNext()) != null){ entries.add(Arrays.asList(line)); }
+        return entries;
+    }
 }
