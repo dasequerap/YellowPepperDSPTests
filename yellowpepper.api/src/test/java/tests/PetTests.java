@@ -1,10 +1,10 @@
 package tests;
 
+import helpers.TestDataLoader;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.TestMethodOrder;
-import static org.hamcrest.Matchers.equalTo;
 
 import models.PetModel;
 import views.PetView;

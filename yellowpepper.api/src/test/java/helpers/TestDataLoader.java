@@ -1,14 +1,12 @@
-package tests;
+package helpers;
 
 import models.UserModel;
 import models.PetModel;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-class TestDataLoader {
+public class TestDataLoader {
 
     public TestDataLoader(){}
 

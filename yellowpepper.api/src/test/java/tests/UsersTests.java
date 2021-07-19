@@ -1,8 +1,8 @@
 package tests;
 
+import helpers.TestDataLoader;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.*;
-import java.io.IOException;
 
 import models.UserModel;
 import views.UserView;
