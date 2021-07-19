@@ -2,12 +2,13 @@ package tests;
 
 import helpers.TestDataLoader;
 import io.restassured.response.ValidatableResponse;
-import models.PetModel;
 import org.apache.http.HttpStatus;
 import static org.hamcrest.Matchers.equalTo;
 
 import models.UserModel;
-
+import models.PetModel;
+import models.OrderModel;
+import org.junit.jupiter.api.Order;
 
 public class BaseTests {
 
@@ -46,6 +47,17 @@ public class BaseTests {
                 .body("tags", equalTo(pet.getTags()))
                 .body("status", equalTo(pet.getStatus()));
 
+    }
+
+    protected void validateReturnedOrderData(OrderModel order){
+        this.getCurrentResponse()
+                .statusCode(HttpStatus.SC_OK)
+                .body("id", equalTo(order.getId()))
+                .body("petId", equalTo(order.getPetId()))
+                .body("quantity", equalTo(order.getQuantity()))
+                .body("shipDate", equalTo(order.getShipDate()))
+                .body("status", equalTo(order.getStatus()))
+                .body("complete", equalTo(order.getComplete()));
     }
 
     protected void validateMultipleObjectsInResponse(int expectedResultNumber) {

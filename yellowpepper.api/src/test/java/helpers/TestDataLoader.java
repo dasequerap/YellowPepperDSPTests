@@ -1,10 +1,11 @@
 package helpers;
 
-import models.UserModel;
-import models.PetModel;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import models.UserModel;
+import models.PetModel;
+import models.OrderModel;
 
 public class TestDataLoader {
 
@@ -44,6 +45,19 @@ public class TestDataLoader {
         testPet.addTag(petTagTwo);
 
         return testPet;
+    }
+
+    public OrderModel createNewTestOrder(){
+        OrderModel testOrder = new OrderModel();
+
+        testOrder.setId(4);
+        testOrder.setPetId(2);
+        testOrder.setQuantity(5);
+        testOrder.setShipDate("2021-07-19T14:02:51.036+00:00");
+        testOrder.setStatus("placed");
+        testOrder.setComplete(true);
+
+        return testOrder;
     }
 
 }

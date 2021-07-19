@@ -37,7 +37,7 @@ public class UsersTests extends BaseTests {
     @Test
     @DisplayName("GIVEN user id WHEN user requests user information THEN system return user information by its id")
     void getAnExistingUserByItsId(){
-        this.setCurrentResponse(usersView.getUserByUsername("testUser"));
+        this.setCurrentResponse(usersView.getUserByUsername(testUser.getUserName()));
         this.validateReturnedUserData(testUser);
     }
 
