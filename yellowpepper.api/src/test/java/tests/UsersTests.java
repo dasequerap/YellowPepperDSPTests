@@ -3,7 +3,6 @@ package tests;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.*;
 import java.io.IOException;
-import static org.hamcrest.Matchers.*;
 
 import models.UserModel;
 import views.UserView;
