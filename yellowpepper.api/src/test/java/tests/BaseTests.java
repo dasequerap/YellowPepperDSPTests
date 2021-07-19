@@ -1,6 +1,7 @@
 package tests;
 
 import io.restassured.response.ValidatableResponse;
+import models.PetModel;
 import org.apache.http.HttpStatus;
 
 import models.UserModel;
@@ -9,9 +10,11 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class BaseTests {
 
+    final String webServiceURI = "http://localhost:8080/api/v3/";
     private ValidatableResponse response;
+    static TestDataLoader testDataLoader;
 
-    protected BaseTests() { }
+    BaseTests() { }
 
     protected ValidatableResponse getCurrentResponse(){  return this.response; }
 
@@ -30,6 +33,18 @@ public class BaseTests {
                 .body("password", equalTo(user.getPassword()))
                 .body("phone", equalTo(user.getPhone()))
                 .body("userStatus", equalTo(user.getUserStatus()));
+    }
+
+    protected void validateReturnedPetData(PetModel pet){
+        this.getCurrentResponse()
+                .statusCode(HttpStatus.SC_OK)
+                .body("id", equalTo(pet.getId()))
+                .body("category", equalTo(pet.getCategory()))
+                .body("name", equalTo(pet.getName()))
+                .body("photoUrls", equalTo(pet.getPhotoUrls()))
+                .body("tags", equalTo(pet.getTags()))
+                .body("status", equalTo(pet.getStatus()));
+
     }
 
 }

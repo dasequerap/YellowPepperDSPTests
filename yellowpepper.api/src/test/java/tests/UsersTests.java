@@ -10,13 +10,12 @@ import views.UserView;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UsersTests extends BaseTests {
 
-    private final String _webServiceURI = "http://localhost:8080/api/v3/";
     private static UserView usersView;
-    private static TestDataLoader testDataLoader;
     private static UserModel testUser;
 
-    UsersTests() throws IOException {
-        usersView = new UserView(this._webServiceURI);
+    UsersTests() {
+        super();
+        usersView = new UserView(super.webServiceURI);
     }
 
     @BeforeAll
