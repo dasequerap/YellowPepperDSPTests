@@ -31,8 +31,8 @@ public class Tests {
 
 	@AfterAll
 	static void tearDown(){
-		/*mainActivity.quitActivity();
-		androidDriver.removeApp();*/
+		mainActivity.quitActivity();
+		androidDriver.removeApp();
 		androidDriver.closeDriver();
 	}
 }
