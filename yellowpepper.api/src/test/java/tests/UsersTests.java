@@ -1,9 +1,8 @@
 package tests;
 
+import helpers.TestDataLoader;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.*;
-import java.io.IOException;
-import static org.hamcrest.Matchers.*;
 
 import models.UserModel;
 import views.UserView;
@@ -11,13 +10,12 @@ import views.UserView;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UsersTests extends BaseTests {
 
-    private final String _webServiceURI = "http://localhost:8080/api/v3/";
     private static UserView usersView;
-    private static TestDataLoader testDataLoader;
     private static UserModel testUser;
 
-    UsersTests() throws IOException {
-        usersView = new UserView(this._webServiceURI);
+    UsersTests() {
+        super();
+        usersView = new UserView(super.webServiceURI);
     }
 
     @BeforeAll
@@ -39,7 +37,7 @@ public class UsersTests extends BaseTests {
     @Test
     @DisplayName("GIVEN user id WHEN user requests user information THEN system return user information by its id")
     void getAnExistingUserByItsId(){
-        this.setCurrentResponse(usersView.getUserByUsername("testUser"));
+        this.setCurrentResponse(usersView.getUserByUsername(testUser.getUserName()));
         this.validateReturnedUserData(testUser);
     }
 

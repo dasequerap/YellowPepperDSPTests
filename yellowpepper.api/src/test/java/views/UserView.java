@@ -1,7 +1,5 @@
 package views;
 
-import java.io.IOException;
-import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 
 import models.UserModel;
@@ -9,15 +7,12 @@ import org.json.simple.JSONObject;
 
 public class UserView extends BaseView{
 
-    public UserView(String _webServiceURI) throws IOException {
-        RestAssured.baseURI = _webServiceURI;
-        this.setRequest(RestAssured.given());
-        this.getRequest().basePath("user");
-        this.getRequest().log().everything().when();
+    public UserView(String _webServiceURI) {
+        super(_webServiceURI, "user");
     }
 
-    public ValidatableResponse getUserByUsername(String userId) {
-        return this.getRequest().get( "{userId}", userId).then().log().everything();
+    public ValidatableResponse getUserByUsername(String userName) {
+        return this.getRequest().get( "{userName}", userName).then().log().everything();
     }
 
     public ValidatableResponse createUser(UserModel newUser){
