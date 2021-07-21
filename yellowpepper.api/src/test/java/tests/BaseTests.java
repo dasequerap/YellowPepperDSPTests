@@ -3,7 +3,10 @@ package tests;
 import helpers.TestDataLoader;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
-import static org.hamcrest.Matchers.equalTo;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 import java.util.Map;
 
 import models.UserModel;
@@ -74,4 +77,16 @@ public class BaseTests {
                 .body("data.size()", equalTo(expectedResultNumber));
     }
 
+    protected void validateResponseMessage(String expectedMessage, int httpStatus){
+        response.assertThat().statusCode(httpStatus);
+        String responseMessage = this.getCurrentResponse().extract().asString();
+        assertThat(responseMessage, equalTo(expectedMessage));
+    }
+
+    protected void validateSuccessfulResponseContainsMessage(String message){
+        this.getCurrentResponse().assertThat()
+                .statusCode(HttpStatus.SC_OK);
+        String responseMessage = this.getCurrentResponse().extract().asString();
+        assertThat(responseMessage, containsString(message));
+    }
 }

@@ -1,12 +1,10 @@
 package views;
 
 import io.restassured.RestAssured;
-import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 
 public class BaseView {
 
-    private String _resource;
     private RequestSpecification _request;
 
     BaseView(String _webServiceURI, String basePath) {
