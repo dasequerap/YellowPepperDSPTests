@@ -16,7 +16,7 @@ public class MainActivity extends BaseActivity {
 	private final By expenseButton = By.id("com.monefy.app.lite:id/expense_button");
 	private final By incomeButton = By.id("com.monefy.app.lite:id/income_button");
 	private final By snackBarText = By.id("com.monefy.app.lite:id/snackbar_text");
-	WebDriverWait wait = new WebDriverWait(androidDriver.getCurrentDriver(), 5);
+	final WebDriverWait wait = new WebDriverWait(androidDriver.getCurrentDriver(), 10);
 
 
 	public MainActivity(AndroidDeviceDriver androidDriver)  {
@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity {
 			wait.until(ExpectedConditions.elementToBeClickable(suggestionLocator));
 			currentElement = (MobileElement) this.getCurrentDriver().findElement(suggestionLocator);
 			currentElement.click();
-		} catch (TimeoutException e){ }
+		} catch (TimeoutException ignored){ }
 	}
 
 	public void clickHamburgerMenu(){

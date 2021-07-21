@@ -1,7 +1,7 @@
 # Eclipse
-.classpath
-.project
 .settings/
+adb
+cls
 # Maven
 log/
 target/

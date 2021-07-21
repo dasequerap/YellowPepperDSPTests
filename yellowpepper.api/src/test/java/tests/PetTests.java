@@ -1,10 +1,8 @@
 package tests;
 
-import helpers.TestDataLoader;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.TestMethodOrder;
+import helpers.TestDataLoader;
 
 import models.PetModel;
 import views.PetView;
@@ -14,14 +12,15 @@ public class PetTests extends BaseTests {
 
     private static PetModel testPet;
     private static PetView petView;
+    private final int defaultPetQuantity = 8;
 
-    PetTests() {
+    public PetTests() {
         super();
         petView = new PetView(super.webServiceURI);
     }
 
     @BeforeAll
-    static void setUp(){
+    public static void setUp(){
         testDataLoader = new TestDataLoader();
         testPet = testDataLoader.createNewTestPet();
     }
@@ -29,7 +28,7 @@ public class PetTests extends BaseTests {
     @Order(1)
     @Test
     @DisplayName("GIVEN user has data to create a new pet WHEN user requests new pet creation THEN a new pet is created on the system")
-    void createNewPet(){
+    public void createNewPet(){
         this.setCurrentResponse(petView.createPet(testPet));
         this.validateReturnedPetData(testPet);
     }
@@ -37,7 +36,7 @@ public class PetTests extends BaseTests {
     @Order(2)
     @Test
     @DisplayName("GIVEN user has an id of an existing pet WHEN user queries for a pet THEN system returns information of an existing pet")
-    void getPetById(){
+    public void getPetById(){
         this.setCurrentResponse(petView.getPetById(testPet.getId()));
         this.validateReturnedPetData(testPet);
     }
@@ -45,25 +44,23 @@ public class PetTests extends BaseTests {
     @Order(3)
     @Test
     @DisplayName("GIVEN user has an id of a pet that does not exists WHEN user queries for a pet creation THEN system return not found")
-    void getNotExistentPetById(){
+    public void getNotExistentPetById(){
         this.setCurrentResponse(petView.getPetById(100));
-        this.getCurrentResponse()
-                .statusCode(HttpStatus.SC_NOT_FOUND)
-                .extract().asString().contains("Pet not found");
+        this.validateResponseMessage("Pet not found", HttpStatus.SC_NOT_FOUND);
     }
 
     @Order(4)
     @Test
     @DisplayName("GIVEN user a valid status of a pet WHEN user queries pets by status THEN system returns all pets that has given status")
-    void getPetsByValidStatus(){
+    public void getPetsByValidStatus(){
         this.setCurrentResponse(petView.getPetsByStatus(testPet.getStatus()));
-        this.validateMultipleObjectsInResponse(8);
+        this.validateMultipleObjectsInResponse(defaultPetQuantity);
     }
 
     @Order(5)
     @Test
     @DisplayName("GIVEN user has data to modify pet data WHEN user requests pet data modification THEN pet data is modified")
-    void createNewUser() {
+    public void createNewUser() {
         this.setCurrentResponse(petView.updatePet(testPet));
     }
 }

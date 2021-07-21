@@ -1,19 +1,11 @@
 package helpers;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.*;
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
-
 import models.BudgetEntryModel;
 import models.BudgetEntryModel.BudgetEntryType;
 import models.BudgetEntryModel.PaymentType;
 import models.BudgetEntryModel.Category;
 
 public class TestDataLoader {
-
-    private final String ordersTestData = "src/resources/orders.csv";
 
     public TestDataLoader(){}
 
@@ -38,5 +30,4 @@ public class TestDataLoader {
         testBudgetEntry.setNotes("Test expense 1");
         return testBudgetEntry;
     }
-
 }

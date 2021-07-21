@@ -1,9 +1,9 @@
 package views;
 
 import io.restassured.response.ValidatableResponse;
+import org.json.JSONObject;
 
 import models.PetModel;
-import org.json.simple.JSONObject;
 
 public class PetView extends BaseView{
 
@@ -21,12 +21,12 @@ public class PetView extends BaseView{
     }
 
     public ValidatableResponse createPet(PetModel pet){
-        return this.getRequest().body(setJsonBodyParamsForPet(pet).toJSONString()).post().then().log().everything();
+        return this.getRequest().body(setJsonBodyParamsForPet(pet).toString()).post().then().log().everything();
 
     }
 
     public ValidatableResponse updatePet(PetModel pet){
-        return this.getRequest().body(setJsonBodyParamsForPet(pet).toJSONString()).put().then().log().everything();
+        return this.getRequest().body(setJsonBodyParamsForPet(pet).toString()).put().then().log().everything();
     }
 
     private JSONObject setJsonBodyParamsForPet(PetModel pet){

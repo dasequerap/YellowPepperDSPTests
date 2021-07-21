@@ -1,9 +1,9 @@
 package views;
 
 import io.restassured.response.ValidatableResponse;
+import org.json.JSONObject;
 
 import models.UserModel;
-import org.json.simple.JSONObject;
 
 public class UserView extends BaseView{
 
@@ -28,7 +28,7 @@ public class UserView extends BaseView{
         postParams.put("phone", newUser.getPhone());
         postParams.put("userStatus", newUser.getUserStatus());
 
-        return this.getRequest().body(postParams.toJSONString()).post().then().log().everything();
+        return this.getRequest().body(postParams.toString()).post().then().log().everything();
     }
 
     public ValidatableResponse login(UserModel userToLogIn){

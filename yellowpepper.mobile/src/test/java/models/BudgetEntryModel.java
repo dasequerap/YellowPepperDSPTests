@@ -29,7 +29,7 @@ public class BudgetEntryModel {
 		TOILETRY ("Toiletry"),
 		TRANSPORT ("Transport");
 
-		private String category;
+		private final String category;
 
 		Category(String category) {
 			this.category = category;

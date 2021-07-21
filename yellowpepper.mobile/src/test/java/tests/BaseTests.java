@@ -1,13 +1,12 @@
 package tests;
 
-import activities.BudgetEntryActivity.BudgetEntryActivity;
+import activities.budgetEntryActivity.BudgetEntryActivity;
 import helpers.AndroidDeviceDriver;
 import helpers.TestDataLoader;
 import models.BudgetEntryModel;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 
 public class BaseTests {
 
@@ -18,7 +17,7 @@ public class BaseTests {
 
     }
 
-    static void init() throws UnsupportedEncodingException, URISyntaxException, MalformedURLException {
+    static void init() throws UnsupportedEncodingException, MalformedURLException {
         androidDriver = new AndroidDeviceDriver();
         testDataLoader = new TestDataLoader();
         androidDriver.initDriver();

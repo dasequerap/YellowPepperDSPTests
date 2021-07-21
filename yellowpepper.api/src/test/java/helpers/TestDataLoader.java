@@ -12,8 +12,6 @@ import models.OrderModel;
 
 public class TestDataLoader {
 
-    private final String ordersTestData = "src/resources/orders.csv";
-
     public TestDataLoader(){}
 
     public UserModel createNewTestUser(){
@@ -66,20 +64,21 @@ public class TestDataLoader {
     }
 
     public  List<List<String>> getOrdersFromTestData() throws CsvValidationException, IOException {
+        String ordersTestData = "src/test/resources/orders.csv";
         return readCSVFile(ordersTestData);
     }
 
     public Map<String, Object> getInventory(int orderEntries) throws CsvValidationException, IOException {
         Map<String, Object> inventory = new HashMap<>();
         List<List<String>> testDataOrders = this.getOrdersFromTestData();
-        Integer tempCount = 0;
+        int tempCount;
 
         for(int index = 0; index < orderEntries; index++) {
             if(inventory.get(testDataOrders.get(index).get(4)) != null){
                 tempCount = Integer.parseInt(testDataOrders.get(index).get(2))
                         + Integer.parseInt((String) inventory.get(testDataOrders.get(index).get(4)));
                 inventory.remove(testDataOrders.get(index).get(4));
-                inventory.put(testDataOrders.get(index).get(4), tempCount.toString());
+                inventory.put(testDataOrders.get(index).get(4), Integer.toString(tempCount));
             } else {
                 inventory.put(testDataOrders.get(index).get(4), testDataOrders.get(index).get(2));
             }
@@ -89,8 +88,8 @@ public class TestDataLoader {
 
     private List<List<String>> readCSVFile(String csvFile) throws IOException, CsvValidationException {
         CSVReader csvTestData = new CSVReader(new FileReader(csvFile));
-        List<List<String>> entries = new ArrayList<List<String>>();
-        String line[] = null;
+        List<List<String>> entries = new ArrayList<>();
+        String[] line;
         csvTestData.readNext();
 
         while((line = csvTestData.readNext()) != null){ entries.add(Arrays.asList(line)); }

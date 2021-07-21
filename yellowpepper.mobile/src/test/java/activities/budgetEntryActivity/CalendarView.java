@@ -1,11 +1,11 @@
-package activities.BudgetEntryActivity;
+package activities.budgetEntryActivity;
 
 import helpers.AndroidDeviceDriver;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
 
 public class CalendarView {
-    private AndroidDeviceDriver androidDriver;
+    private final AndroidDeviceDriver androidDriver;
     protected MobileElement currentElement;
     private final By textInputModeButton = By.id("com.monefy.app.lite:id/mtrl_picker_header_toggle");
     private final By textInputField = By.xpath(
