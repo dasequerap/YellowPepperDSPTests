@@ -5,15 +5,15 @@ import java.util.*;
 public class PetModel {
 
     private int id;
-    private Map<String, Object> category;
+    private final Map<String, Object> category;
     private String name;
-    private List<String> photoUrls;
-    private List<Map<String, Object>> tags;
+    private final List<String> photoUrls;
+    private final List<Map<String, Object>> tags;
     private String status;
 
     public PetModel() {
         category = new HashMap<>();
-        photoUrls = new ArrayList();
+        photoUrls = new ArrayList<>();
         tags = new ArrayList<>();
     }
 

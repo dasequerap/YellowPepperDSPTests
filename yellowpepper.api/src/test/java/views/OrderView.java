@@ -1,9 +1,11 @@
 package views;
 
 import io.restassured.response.ValidatableResponse;
+import org.json.JSONObject;
 
 import models.OrderModel;
-import org.json.simple.JSONObject;
+
+
 
 public class OrderView extends BaseView{
 
@@ -16,7 +18,7 @@ public class OrderView extends BaseView{
     }
 
     public ValidatableResponse createOrder(OrderModel order){
-        return this.getRequest().body(setJsonBodyParamsForOrder(order).toJSONString()).post("/order").then().log().everything();
+        return this.getRequest().body(setJsonBodyParamsForOrder(order).toString()).post("/order").then().log().everything();
 
     }
 

@@ -1,4 +1,4 @@
-package activities.BudgetEntryActivity;
+package activities.budgetEntryActivity;
 
 import helpers.AndroidDeviceDriver;
 import io.appium.java_client.MobileBy;
@@ -10,8 +10,6 @@ import models.BudgetEntryModel.Category;
 import org.openqa.selenium.By;
 
 public class BudgetEntryActivity extends BaseActivity {
-
-    private final String activityName = "com.monefy.activities.transaction.NewTransactionActivity_";
 
     protected final By paymentTypeMenu = MobileBy.id("com.monefy.app.lite:id/icon");
     protected final By cashOption = By.xpath("//*[@text='Cash']");

@@ -21,7 +21,7 @@ public class UserModel {
 
     public String getLastName() { return this.lastName; }
 
-    public String getEmail() { return this.email; };
+    public String getEmail() { return this.email; }
 
     public String getPassword() { return this.password; }
 
