@@ -1,10 +1,9 @@
 package tests;
 
 import com.opencsv.exceptions.CsvValidationException;
-import helpers.TestDataLoader;
-import models.UserModel;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.*;
+import helpers.TestDataLoader;
 
 import models.OrderModel;
 import views.OrderView;

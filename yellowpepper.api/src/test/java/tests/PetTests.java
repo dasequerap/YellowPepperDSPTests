@@ -1,8 +1,8 @@
 package tests;
 
-import helpers.TestDataLoader;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.*;
+import helpers.TestDataLoader;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.TestMethodOrder;
 

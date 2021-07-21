@@ -1,4 +1,4 @@
-package activities.BudgetEntryActivity;
+package activities.budgetEntryActivity;
 
 import helpers.AndroidDeviceDriver;
 import io.appium.java_client.MobileBy;
@@ -6,7 +6,7 @@ import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
 
 public class NumericPadView {
-    private AndroidDeviceDriver androidDriver;
+    private final AndroidDeviceDriver androidDriver;
     protected By numberButton = null;
     protected MobileElement currentElement;
     protected final By dotButton = MobileBy.id("com.monefy.app.lite:id/buttonKeyboardDot");
@@ -16,7 +16,7 @@ public class NumericPadView {
     }
 
     public void enterValue(double value){
-        String parsedValue[] = String.format("%.2f", value).replace(",", ".").split("");
+        String[] parsedValue = String.format("%.2f", value).replace(",", ".").split("");
 
         for(String digit: parsedValue){
             if (digit.equals(".")) {
