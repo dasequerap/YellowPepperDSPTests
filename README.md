@@ -35,7 +35,7 @@ According to the test charters findings:
 * Only system's back button can be used to return to main screen.
 
 ## 3. Automated tests - MoneyFy app
-
+You can find how to install and run the project [here](https://github.com/dasequerap/YellowPepperDSPTests/blob/master/yellowpepper.mobile).
  ***1. Ideas for testing***
  Proposed test cases include:
  - Create a new income.
@@ -53,7 +53,7 @@ A project was created to check MoneyFy expense management. Tech stack includes J
  ***3. How to run test suite***
 Please check README file of the project in this repository.
 ## 4. Automated tests - Swagger petstore
-
+You can find how to install and run the project [here](https://github.com/dasequerap/YellowPepperDSPTests/blob/master/yellowpepper.api).
  ***1. Ideas for testing***
  * Test specific scenarios.
 	* On user scenario:

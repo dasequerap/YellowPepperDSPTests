@@ -32,8 +32,9 @@ Through this command:
 	 - Maven will download and install libraries required to execute automated test suite.
 	 - Tests will start inmediately. Typical run time is about 1m - 1m20 seconds.
 	 - MoneyFy app is bundled with the repository. The tests will install and uninstall the app automatically.
-	 - If you want to use different settings for the virtual device, please change following capabilities on [## **AndroidDeviceDriver.java**](https://github.com/dasequerap/YellowPepperDSPTests/blob/master/yellowpepper.mobile/src/test/java/helpers/AndroidDeviceDriver.java) file:
+	 - If you want to use different settings for the virtual device, please change following capabilities on [ **AndroidDeviceDriver.java**](https://github.com/dasequerap/YellowPepperDSPTests/blob/master/yellowpepper.mobile/src/test/java/helpers/AndroidDeviceDriver.java) file:
 	
 		 - ```capabilities.setCapability("avd", "TestAndroid9Device")```: Change ```TestAndroid9Device``` with the name of the device created on AVD manager.
 		 - ```capabilities.setCapability("platformVersion", "9")```: change ```9``` with the version installed on created virtual device. Please, be aware installed Android version is supported by MoneyFy app.
 		 - ```capabilities.setCapability("deviceName", "emulator-5554")```: If you are not sure about the ADB name of the device, please change ```emulator-5554``` with the device name you get after running command ```adb devices```.
+
