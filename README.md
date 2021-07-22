@@ -49,7 +49,7 @@ A project was created to check MoneyFy expense management. Tech stack includes J
  * Models: A representation of the different entities of the app. For this project, classes are created with test data directly on code.
  * Activites: Similar to the page object model, these classes interact directly with apps' activities. The activity classes interacts with differnet controls and fields to input and extract data for further comparisons.
  * Tests: Here is where the test cases are defined and run. Main purpose of the test cases are check the management of the expenses on the app and the calculations after adding, modifying and deleting a few of them.
- * 
+
  ***3. How to run test suite***
 Please check README file of the project in this repository.
 ## 4. Automated tests - Swagger petstore
